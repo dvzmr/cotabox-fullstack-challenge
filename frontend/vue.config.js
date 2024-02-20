@@ -3,6 +3,17 @@ const webpack = require('webpack');
 
 module.exports = defineConfig({
     transpileDependencies: true,
+    devServer: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3000/participants', // Replace with your API URL
+                changeOrigin: true, // Ensures the origin header is rewritten
+                pathRewrite: {
+                    '^/api': '' // Removes /api from the request path
+                }
+            }
+        }
+    },
     configureWebpack: {
         plugins: [
             new webpack.DefinePlugin({

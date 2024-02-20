@@ -1,13 +1,13 @@
 import "dotenv/config";
 import app from "./src/app.js"
 
-const PORT = 3000;
+const port = process.env.PORT || 3000;
 
 const routes = {
     "/": "Tela principal - Dashboard",
     "/participants": "Entrei na rota de Participantes"
 };
 
-app.listen(PORT, () => {
+app.listen(port, () => {
     console.log("servidor escutando!");
 });
