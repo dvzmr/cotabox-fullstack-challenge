@@ -1,42 +1,55 @@
-<template>
-  <ParticipantForm/>
-</template>
 <script>
 import ParticipantForm from "@/components/SendParticipantForm.vue";
+import DoughnutChart from "@/components/ChartComponent.vue";
+import DataTable from "@/components/DataTable.vue";
+import getDataTable from "@/getData";
+
+
 
 export default {
   name: 'App',
   components: {
-    ParticipantForm
+    DoughnutChart,
+    ParticipantForm,
+    DataTable
+
+  },
+  data(){
+    return {
+      response: null
+    }
+  },
+  async created() {
+    this.response = await getDataTable();
   }
 }
 </script>
+<template>
+  <header class="form">
+  <ParticipantForm/>
+  </header>
+  <h1>DATA</h1>
+  <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+  <div class="row">
+
+    <div class="column" style="padding-left: 30em">
+      <DataTable :users="response"/>
+    </div>
+    <div class="column" style="padding-right: 5em">
+      <DoughnutChart style=" "/>
+    </div>
+  </div>
+
+</template>
+
 <style>
-.logo {
-  width: 40rem;
+
+html, body {
+  padding: 0;
+  margin: 0;
 }
 
-.register input {
-  width: 25ch;
-  min-height: 2rem;
-  padding-left: 0.5rem;
-  margin-right: 1rem;
-}
 
-.register #sendButton {
-  width: 10ch;
-  min-height: 2rem;
-  background-color: deepskyblue;
-  color: white;
-  border-color: white;
-}
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>

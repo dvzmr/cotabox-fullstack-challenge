@@ -1,16 +1,12 @@
 <template>
-  <div class="register">
-    <form @submit="onSubmit">
-      <input type="text" v-model="input_first_name" placeholder="First Name" required >
+  <header>
+    <form>
+      <input class="field" type="text" v-model="input_first_name" placeholder="First Name" required >
       <input type="text" v-model="input_last_name" placeholder="Last Name" required>
       <input type=number v-model="input_participation" placeholder="Participation" required>
-      <input type="submit" id="sendButton" value="SEND" v-on:click="registerParticipantion" >
+      <input class="sendButton" type="submit" id="sendButton" value="SEND" v-on:click="registerParticipantion" >
     </form>
-
-  </div>
-
-  <h1>DATA</h1>
-  <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+  </header>
 </template>
 <script>
 // import participantController.js from '../cota'
@@ -38,3 +34,19 @@ export default {
   },
 }
 </script>
+
+<style>
+
+.sendButton {
+  padding-right: 2em;
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
