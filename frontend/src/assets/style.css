@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 
-form{
+.form{
     width: 100%;
     height: 5rem;
     background-color: #06B6D4;
@@ -21,15 +21,12 @@ form{
     margin-right: 1rem;
 }
 
-.sendButton {
+.register #sendButton {
     width: 10ch;
     min-height: 2rem;
     background-color: deepskyblue;
     color: white;
-    border: white 2px solid;
-    text-align: center;
-    padding-left: 1em;
-    padding-bottom: ;
+    border-color: white;
 }
 
 #app {
@@ -79,22 +76,16 @@ input:enabled {
     margin-right: 1em;
 }
 
-table.a{
-    margin-top: 2em;
-    table-layout: fixed;
-    min-width: 110%;
-    min-height: 110%;
-
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
-th.cellA{
-    width: 2.255em;
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
-canvas{
-    text-align: center;
-    max-height: 30vh;
-    padding-bottom: vh;
-}
+
 
 

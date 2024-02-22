@@ -26,6 +26,7 @@ export default {
     Doughnut
   },
   data() {
+
     return createData(this.users)
   }
 }

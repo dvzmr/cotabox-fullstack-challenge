@@ -30,7 +30,7 @@ export default {
           <th>First Name</th>
           <th>Last Name</th>
           <th>Participation</th>
-          <th class="cellA"></th>
+          <th ></th>
         </tr>
       </thead >
         <tbody>
@@ -50,7 +50,27 @@ export default {
 
 <style>
 
+table.a{
+  margin-top: 2em;
+  table-layout: auto;
+  min-width: 80%;
+  min-height: 80%;
+  border: 1px solid black;
+  border-spacing: 2px;
+  border-collapse: collapse;
 
+}
 
+th.cellA{
+  border : transparent;
+  width: 2.255em;
+  border-spacing: 2px;
+  border-collapse: collapse;
+}
+
+th{
+  border-spacing: 2px;
+  border-collapse: collapse;
+}
 
 </style>

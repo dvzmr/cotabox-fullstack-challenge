@@ -1,27 +1,52 @@
 <template>
   <header>
     <form>
-      <input type="text" v-model="input_first_name" placeholder="First Name" required >
-      <input type="text" v-model="input_last_name" placeholder="Last Name" required>
-      <input type=number v-model="input_participation" placeholder="Participation" required>
-      <input class="sendButton" type="submit" id="sendButton" value="SEND" v-on:click="registerParticipantion" >
+      <input id="inputField" type="text" v-model="input_first_name" @input="validInput($event)" placeholder="First Name"
+             maxlength="20" required>
+      <input type="text" v-model="input_last_name" @input="validInput($event)" placeholder="Last Name" maxlength="20"
+             required>
+      <input type=number v-model="input_participation" @input="validParticipation($event)" placeholder="Participation"
+             required>
+      <input class="sendButton" type="submit" id="sendButton" value="SEND" v-on:click="registerParticipation">
     </form>
   </header>
 </template>
 <script>
-// import participantController.js from '../cota'
+
 import axios from 'axios';
+
 export default {
   name: 'ParticipantForm',
-  data (){
-    return{
+  data() {
+    return {
       input_first_name: "",
       input_last_name: "",
       input_participation: null
     }
   },
   methods: {
-    async registerParticipantion() {
+
+    validInput(event) {
+
+      var regex = /^[a-zA-Z\s]*$/;
+
+      if (!regex.test(event.target.value)) {
+        event.target.value = event.target.value.replace(/[^a-zA-Z\s]/g, '');
+
+      }
+    },
+
+    validParticipation(event) {
+
+      var regex = /^(?:0|[1-9]\d*)(?:\.\d+)?$/;
+
+      if (!regex.test(event.target.value)) {
+        event.target.value = event.target.value.replace(/^(?:0|[1-9]\d*)(?:\.\d+)?$/, '');
+
+      }
+    },
+
+    async registerParticipation() {
       let result = {
         firstName: this.input_first_name,
         lastName: this.input_last_name,
@@ -29,23 +54,23 @@ export default {
       }
 
       console.log(JSON.stringify(result))
-      await axios.post("http://localhost:3000/participants",result)
-    },
-
-  },
+      await axios.post("http://localhost:3000/participants", result)
+    }
+  }
 }
 </script>
 
 <style>
 
-form{
+form {
   width: 100%;
   height: 5rem;
   background-color: #06B6D4;
   text-align: center;
   position: fixed;
   top: 0;
-  overflow: hidden;}
+  overflow: hidden;
+}
 
 input {
   width: 25ch;
@@ -54,16 +79,23 @@ input {
   margin-right: 1rem;
 }
 
-.register #sendButton {
+.sendButton {
   width: 10ch;
   min-height: 2rem;
   background-color: deepskyblue;
   color: white;
-  border-color: white;
+  border: 2px solid white;
+  padding-left: 1em;
+  padding-bottom: 0.1em;
+  font-weight: bolder;
 }
-.sendButton {
-  padding-right: 2em;
+
+input[type=number] {
+  -moz-appearance: textfield;
+
 }
+
+
 
 
 </style>
