@@ -1,10 +1,7 @@
-
-
 <script lang="js">
 import {Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js'
 import {Doughnut} from 'vue-chartjs'
-import * as chartConfig from './chartConfig.js'
-import {data} from "./chartConfig.js";
+import {createData} from "./chartConfig";
 import {settings} from "./chartConfig";
 
 
@@ -16,19 +13,24 @@ export default {
   name: 'DoughnutChart',
   methods: {
     settings,
-    data() {
-      return data
+  },
+  props:{
+    users: []
+  },
+  computed: {
+    dataParticipant() {
+      return createData(this.users)
     }
   },
   components: {
     Doughnut
   },
   data() {
-    return chartConfig
+    return createData(this.users)
   }
 }
 </script>
 
 <template>
-  <Doughnut :data="data" :options="settings"  />
+  <Doughnut :data="dataParticipant" :options="settings"/>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <header>
     <form>
-      <input class="field" type="text" v-model="input_first_name" placeholder="First Name" required >
+      <input type="text" v-model="input_first_name" placeholder="First Name" required >
       <input type="text" v-model="input_last_name" placeholder="Last Name" required>
       <input type=number v-model="input_participation" placeholder="Participation" required>
       <input class="sendButton" type="submit" id="sendButton" value="SEND" v-on:click="registerParticipantion" >
@@ -30,23 +30,40 @@ export default {
 
       console.log(JSON.stringify(result))
       await axios.post("http://localhost:3000/participants",result)
-    }
+    },
+
   },
 }
 </script>
 
 <style>
 
+form{
+  width: 100%;
+  height: 5rem;
+  background-color: #06B6D4;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  overflow: hidden;}
+
+input {
+  width: 25ch;
+  min-height: 2rem;
+  padding-left: 0.5rem;
+  margin-right: 1rem;
+}
+
+.register #sendButton {
+  width: 10ch;
+  min-height: 2rem;
+  background-color: deepskyblue;
+  color: white;
+  border-color: white;
+}
 .sendButton {
   padding-right: 2em;
 }
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>

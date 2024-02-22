@@ -3,7 +3,7 @@ import ParticipantForm from "@/components/SendParticipantForm.vue";
 import DoughnutChart from "@/components/ChartComponent.vue";
 import DataTable from "@/components/DataTable.vue";
 import getDataTable from "@/getData";
-
+import axios from "axios";
 
 
 export default {
@@ -14,7 +14,15 @@ export default {
     DataTable
 
   },
-  data(){
+  methods: {
+    async deleteParticipation(id) {
+
+      await axios.delete(`http://localhost:3000/participants/${id}`)
+      this.response = await getDataTable();
+
+    }
+  },
+  data() {
     return {
       response: null
     }
@@ -25,18 +33,18 @@ export default {
 }
 </script>
 <template>
-  <header class="form">
-  <ParticipantForm/>
+  <header>
+    <ParticipantForm/>
   </header>
   <h1>DATA</h1>
   <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
   <div class="row">
 
-    <div class="column" style="padding-left: 30em">
-      <DataTable :users="response"/>
+    <div class="column">
+      <DataTable @delete-participant="deleteParticipation" :users="response"/>
     </div>
-    <div class="column" style="padding-right: 5em">
-      <DoughnutChart style=" "/>
+    <div class="column" >
+      <DoughnutChart :users="response" style=" "/>
     </div>
   </div>
 
@@ -48,7 +56,6 @@ html, body {
   padding: 0;
   margin: 0;
 }
-
 
 
 
